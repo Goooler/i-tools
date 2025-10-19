@@ -5,6 +5,7 @@ import {
   Input, 
   Modal, 
   Button, 
+  message, 
   Card, 
   Typography, 
   Space, 
@@ -13,18 +14,22 @@ import {
   Flex,
   Spin,
   Alert,
-  App,
+  App
 } from "antd";
 import {
   CopyOutlined,
   LoadingOutlined,
   LoginOutlined,
   ApiOutlined,
+  SettingOutlined,
   BulbOutlined,
-  BookOutlined,
+  BookOutlined
 } from "@ant-design/icons";
 import ClipboardJS from "clipboard";
 import Head from "next/head";
+
+const { TextArea } = Input;
+const { Title, Paragraph } = Typography;
 
 export default function AlipanTvToken() {
   const { message } = App.useApp();
@@ -44,10 +49,10 @@ export default function AlipanTvToken() {
 
   // 获取当前主机地址
   const getCurrentHost = () => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       return `${window.location.protocol}//${window.location.host}`;
     }
-    return "";
+    return '';
   };
   async function generateAuthUrl() {
     try {
@@ -104,7 +109,7 @@ export default function AlipanTvToken() {
 
   function initializeClipboard() {
     const accessTokenClipboard = new ClipboardJS(
-      "[data-clipboard-target=\"#accessToken\"]",
+      '[data-clipboard-target="#accessToken"]'
     );
     accessTokenClipboard.on("success", () => {
       message.success("已复制访问令牌");
@@ -114,7 +119,7 @@ export default function AlipanTvToken() {
     });
 
     const refreshTokenClipboard = new ClipboardJS(
-      "[data-clipboard-target=\"#refreshToken\"]",
+      '[data-clipboard-target="#refreshToken"]'
     );
     refreshTokenClipboard.on("success", () => {
       message.success("已复制刷新令牌");
@@ -290,13 +295,13 @@ export default function AlipanTvToken() {
                   } 
                   size="small"
                 >
-                  <Typography.Paragraph>
-                    <Typography.Text strong>Oauth令牌链接：</Typography.Text>
-                    <br />
-                    <Typography.Text code>
-                      {currentHost}/api/oauth/alipan/token
-                    </Typography.Text>
-                  </Typography.Paragraph>
+                 <Typography.Paragraph>
+                      <Typography.Text strong>Oauth令牌链接：</Typography.Text>
+                      <br />
+                      <Typography.Text code>
+                        {currentHost}/api/oauth/alipan/token
+                      </Typography.Text>
+                    </Typography.Paragraph>
                 </Card>
               </Col>
 
